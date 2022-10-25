@@ -1,0 +1,30 @@
+[package]
+name = "example-opentelemetry"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+poem = { path = "../../../poem", features = ["opentelemetry", "prometheus"] }
+tokio = { version = "1.17.0", features = ["rt-multi-thread", "macros"] }
+tracing-subscriber = { version = "0.3.9", features = ["env-filter"] }
+opentelemetry = { version = "0.18.0", features = ["metrics"] }
+opentelemetry-http = { version = "0.7.0" }
+opentelemetry-jaeger = { version = "0.17.0", features = [
+    "rt-tokio",
+    "collector_client",
+    "hyper_collector_client",
+] }
+reqwest = "0.11.6"
+
+[[bin]]
+name = "example-opentelemetry-client"
+path = "src/client.rs"
+
+[[bin]]
+name = "example-opentelemetry-server1"
+path = "src/server1.rs"
+
+[[bin]]
+name = "example-opentelemetry-server2"
+path = "src/server2.rs"
